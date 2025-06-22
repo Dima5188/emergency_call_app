@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>חירום - Emergency</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Emergency services app for Israel - Police, Ambulance, Fire Department">
+    <meta name="theme-color" content="#dc2626">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="חירום">
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDAiIGZpbGw9IiNkYzI2MjYiLz4KPHN2ZyB4PSI0NSIgeT0iNDUiIHdpZHRoPSI5MCIgaGVpZ2h0PSI5MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik0xMiAyMmMxIDAgMy0xIDMtM3MtMi0zLTMtM3MtMyAxLTMgM3MyIDMgMyAzeiIvPgo8cGF0aCBkPSJNMTIgMTdWOSIvPgo8cGF0aCBkPSJtMTYgMTEgNC00SDE2bDEtN0w5IDEyaDRsLTEgNyIvPgo8L3N2Zz4KPC9zdmc+">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0iI2RjMjYyNiIvPgo8c3ZnIHg9IjgiIHk9IjgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik0xMiAyMmMxIDAgMy0xIDMtM3MtMi0zLTMtM3MtMyAxLTMgM3MyIDMgMyAzeiIvPgo8cGF0aCBkPSJNMTIgMTdWOSIvPgo8cGF0aCBkPSJtMTYgMTEgNC00SDE2bDEtN0w5IDEyaDRsLTEgNyIvPgo8L3N2Zz4KPC9zdmc+">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIteXXHUwNWY0XHUwNWU4XHUwNWY1XHUwNWY0IC0gRW1lcmdlbmN5IiwKICAic2hvcnRfbmFtZSI6ICJcdTA1ZTdcdTA1ZjRcdTA1ZThcdTA1ZjVcdTA1ZjQiLAogICJkZXNjcmlwdGlvbiI6ICJFbWVyZ2VuY3kgc2VydmljZXMgYXBwIGZvciBJc3JhZWwiLAogICJzdGFydF91cmwiOiAiLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2RjMjYyNiIsCiAgInRoZW1lX2NvbG9yIjogIiNkYzI2MjYiLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNhV1IwYUQwaU1UZ3dJaUJvWldsbmFIUTlJakU0TUNJZ2RtbGxkMEp2ZUQwaU1DQXdJREU0TUNBeE9EQWlJR1pwYkd3OUltNXZibVVpSUhodGJHNXpQU0pvZEhSd09pOHZkM2QzTG5jekxtOXlaeTh5TURBd0wzTjJaeUkrQ2p4eVpXTjBJSGRwWkhSb1BTSXhPREFpSUdobGFXZG9kRDBpTVRnd0lpQnllRDBpTkRBaUlHWnBiR3c5SW1Sak1qWXlOaUl2UGdvOGMzWm5JSGc5SWpRMUlpQjVQU0kwTlNJZ2QybGtkR2c5SW5rd0lpQm9aV2xuYUhROUlqa3dJaUIyYVdWM1FtOTRQU0l3SURBZ01qUWdNalFpSUdacGJHdzlJbTV2Ym1VaUlITjBjbTlyWlQwaWQyaHBkR1VpSUhOMGNtOXJaUzEzYVdSMGFEMGlNaUlnYzNSeWIydGxMV3hwYm1WallYQTlJbkp2ZFc1a0lpQnpkSEp2YTJVDGJ3Smt7cGRYWnFMWGYwWnQ9PjvbZw4==dWx2SWkvOUFBQUEiLAogICAgICAic2l6ZXMiOiAiMTgweDEwMCIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9LAogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNhV1IwYUQwaU16SWlJR2hsYVdkb2REMGlNekl1aklIWnBaWGRDYjNnOUlqQXdNREF1SWlCbWFXeHNQU0p1YjI1bElIZGVJR0JuPVdBQUFBQSIsCiAgICAgICJzaXplcyI6ICIzMngzMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9CiAgXQp9">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #dc2626, #ef4444, #f97316);
+            min-height: 100vh;
+            overflow-x: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        .app-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-bar {
+            height: 48px;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .header {
+            padding: 32px 24px;
+            text-align: center;
+        }
+
+        .app-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .language-selector {
+            position: relative;
+            display: inline-block;
+        }
+
+        .language-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 16px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .language-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 8px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            min-width: 160px;
+            z-index: 50;
+        }
+
+        .language-option {
+            width: 100%;
+            padding: 12px 16px;
+            border: none;
+            background: white;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: background-color 0.15s;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .language-option:hover {
+            background: #f9fafb;
+        }
+
+        .language-option.active {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 0 24px 32px;
+        }
+
+        .emergency-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .emergency-btn {
+            border: none;
+            border-radius: 24px;
+            padding: 32px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: scale(1);
+            transition: all 0.2s;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .emergency-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .emergency-btn:active {
+            transform: scale(0.95);
+        }
+
+        .emergency-btn.police {
+            background: #2563eb;
+        }
+
+        .emergency-btn.police:hover {
+            background: #1d4ed8;
+        }
+
+        .emergency-btn.ambulance {
+            background: #dc2626;
+        }
+
+        .emergency-btn.ambulance:hover {
+            background: #b91c1c;
+        }
+
+        .emergency-btn.fire {
+            background: #ea580c;
+        }
+
+        .emergency-btn.fire:hover {
+            background: #c2410c;
+        }
+
+        .btn-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-icon {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            padding: 24px;
+            width: 96px;
+            height: 96px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-icon svg {
+            width: 48px;
+            height: 48px;
+        }
+
+        .btn-text {
+            text-align: center;
+        }
+
+        .btn-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .btn-number {
+            font-size: 18px;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .footer {
+            padding: 0 24px 32px;
+        }
+
+        .footer-notice {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 40;
+        }
+
+        /* RTL Support */
+        .rtl {
+            direction: rtl;
+        }
+
+        .rtl .language-option {
+            text-align: right;
+        }
+
+        .rtl .btn-text {
+            direction: rtl;
+        }
+
+        /* Icons as inline SVG */
+        .icon-globe {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header {
+                padding: 24px 16px;
+            }
+
+            .main-content {
+                padding: 0 16px 24px;
+            }
+
+            .emergency-btn {
+                padding: 24px;
+            }
+
+            .btn-icon {
+                width: 80px;
+                height: 80px;
+                padding: 20px;
+            }
+
+            .btn-icon svg {
+                width: 40px;
+                height: 40px;
+            }
+
+            .btn-title {
+                font-size: 20px;
+            }
+
+            .app-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <span>9:41</span>
+            <span style="display: flex; align-items: center; gap: 4px;">
+                <div style="width: 4px; height: 4px; background: white; border-radius: 50%;"></div>
+                <div style="width: 4px; height: 4px; background: white; border-radius: 50%;"></div>
+                <div style="width: 4px; height: 4px; background: white; border-radius: 50%;"></div>
+                <span style="font-size: 12px; margin-left: 4px;">100%</span>
+            </span>
+        </div>
+
+        <!-- Header -->
+        <header class="header">
+            <h1 class="app-title" id="appTitle">חירום</h1>
+
+            <div class="language-selector">
+                <button class="language-btn" id="languageBtn">
+                    <svg class="icon-globe" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                    </svg>
+                    <span id="languageText">שפות</span>
+                </button>
+
+                <div class="language-menu hidden" id="languageMenu">
+                    <button class="language-option active" data-lang="he">
+                        <span>🇮🇱</span>
+                        <span>עברית</span>
+                    </button>
+                    <button class="language-option" data-lang="en">
+                        <span>🇺🇸</span>
+                        <span>English</span>
+                    </button>
+                    <button class="language-option" data-lang="ru">
+                        <span>🇷🇺</span>
+                        <span>Русский</span>
+                    </button>
+                    <button class="language-option" data-lang="ar">
+                        <span>🇸🇦</span>
+                        <span>العربية</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="emergency-grid">
+                <!-- Police -->
+                <button class="emergency-btn police" onclick="callEmergency('100', 'police')">
+                    <div class="btn-content">
+                        <div class="btn-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            </svg>
+                        </div>
+                        <div class="btn-text">
+                            <div class="btn-title" id="policeTitle">משטרה</div>
+                            <div class="btn-number">100</div>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Ambulance -->
+                <button class="emergency-btn ambulance" onclick="callEmergency('101', 'ambulance')">
+                    <div class="btn-content">
+                        <div class="btn-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"/>
+                            </svg>
+                        </div>
+                        <div class="btn-text">
+                            <div class="btn-title" id="ambulanceTitle">מד"א</div>
+                            <div class="btn-number">101</div>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Fire Department -->
+                <button class="emergency-btn fire" onclick="callEmergency('102', 'fire')">
+                    <div class="btn-content">
+                        <div class="btn-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 1-4 4-4 1 0 2.5 1.5 2.5 4 0 .5.5 1.5 1.5 2 1 .5 3.5-.5 5-.5-1 2.5-3 4.5-4 5.5-.5 1-1.5 2-3 2.5z"/>
+                            </svg>
+                        </div>
+                        <div class="btn-text">
+                            <div class="btn-title" id="fireTitle">כיבוי והצלה</div>
+                            <div class="btn-number">102</div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-notice">
+                <p id="footerText">לחץ על האייקון המתאים כדי להתקשר לשירות החירום</p>
+            </div>
+        </footer>
+
+        <!-- Overlay for closing menu -->
+        <div class="overlay hidden" id="overlay"></div>
+    </div>
+
+    <script>
+        // Translations
+        const translations = {
+            he: {
+                appName: 'חירום',
+                police: 'משטרה',
+                ambulance: 'מגן דוד אדום',
+                fire: 'כבאות',
+                languages: 'שפות',
+                footerText: 'לחץ על האייקון המתאים כדי להתקשר לשירות החירום'
+            },
+            en: {
+                appName: 'Emergency',
+                police: 'Police',
+                ambulance: 'Ambulance',
+                fire: 'Fire Department',
+                languages: 'Languages',
+                footerText: 'Tap the appropriate icon to call emergency services'
+            },
+            ru: {
+                appName: 'Экстренные службы',
+                police: 'Полиция',
+                ambulance: 'Скорая помощь',
+                fire: 'Пожарная служба',
+                languages: 'Языки',
+                footerText: 'Нажмите на соответствующую иконку для вызова экстренных служб'
+            },
+            ar: {
+                appName: 'الطوارئ',
+                police: 'الشرطة',
+                ambulance: 'الإسعاف',
+                fire: 'الإطفاء',
+                languages: 'اللغات',
+                footerText: 'اضغط على الأيقونة المناسبة للاتصال بخدمات الطوارئ'
+            }
+        };
+
+        let currentLanguage = 'he';
+
+        // DOM Elements
+        const languageBtn = document.getElementById('languageBtn');
+        const languageMenu = document.getElementById('languageMenu');
+        const overlay = document.getElementById('overlay');
+        const appTitle = document.getElementById('appTitle');
+        const languageText = document.getElementById('languageText');
+        const policeTitle = document.getElementById('policeTitle');
+        const ambulanceTitle = document.getElementById('ambulanceTitle');
+        const fireTitle = document.getElementById('fireTitle');
+        const footerText = document.getElementById('footerText');
+
+        // Toggle language menu
+        languageBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleLanguageMenu();
+        });
+
+        // Language options
+        document.querySelectorAll('.language-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                const lang = e.currentTarget.getAttribute('data-lang');
+                changeLanguage(lang);
+            });
+        });
+
+        // Close menu when clicking overlay
+        overlay.addEventListener('click', () => {
+            hideLanguageMenu();
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!languageMenu.contains(e.target) && !languageBtn.contains(e.target)) {
+                hideLanguageMenu();
+            }
+        });
+
+        function toggleLanguageMenu() {
+            languageMenu.classList.toggle('hidden');
+            overlay.classList.toggle('hidden');
+        }
+
+        function hideLanguageMenu() {
+            languageMenu.classList.add('hidden');
+            overlay.classList.add('hidden');
+        }
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+
+            // Update active language option
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.classList.remove('active');
+                if (option.getAttribute('data-lang') === lang) {
+                    option.classList.add('active');
+                }
+            });
+
+            // Update text content
+            const t = translations[lang];
+            appTitle.textContent = t.appName;
+            languageText.textContent = t.languages;
+            policeTitle.textContent = t.police;
+            ambulanceTitle.textContent = t.ambulance;
+            fireTitle.textContent = t.fire;
+            footerText.textContent = t.footerText;
+
+            // Update RTL direction
+            const isRTL = lang === 'he' || lang === 'ar';
+            document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+            document.documentElement.setAttribute('lang', lang);
+
+            if (isRTL) {
+                document.body.classList.add('rtl');
+            } else {
+                document.body.classList.remove('rtl');
+            }
+
+            hideLanguageMenu();
+        }
+
+        function callEmergency(number, service) {
+            // This will actually make the phone call
+            window.location.href = `tel:${number}`;
+
+            // Optional: Log the call attempt
+            console.log(`Calling ${number} for ${service}`);
+        }
+
+        // PWA Installation
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+
+            // Show install button (optional)
+            console.log('PWA can be installed');
+        });
+
+        // Service Worker Registration (simplified)
+        if ('serviceWorker' in navigator) {
+            console.log('Service Worker support detected');
+        }
+    </script>
+</body>
+</html>
